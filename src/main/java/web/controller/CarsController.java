@@ -21,15 +21,9 @@ public class CarsController {
     @GetMapping("/cars")
     public String listOfCars(@RequestParam(value = "count", required = false) Integer count,
             Model model){
-        /*
-        Решил использовать "Integer" в запрашиваемом параметре, потому что без него возникает исключение
-        */
 
-        if (count != null) {
-            model.addAttribute("carsCount", count >= 5 ? carService.getCarList() : carService.countOfCars(count));
-        } else {
-            model.addAttribute("carsCount", carService.getCarList());
-        }
+            model.addAttribute("carsCount", carService.getCarList(count));
+
         return "/cars";
     }
 
